@@ -8,22 +8,26 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="home.css?v=9">
+<link rel="stylesheet" href="home.css?v=8.3">
 </head>
 <body>
 <div id="home-viewport" class="home-viewport">
+ <div id="home-sticky" class="home-sticky">
   <main id="home-canvas" class="home-canvas" aria-label="Projects index">
-    <div class="hover-backdrop" aria-hidden="true"><img id="preview-image" alt=""></div>
-    <header class="top-header" aria-label="Portfolio navigation">
-      <div class="header-brand">OLEKSANDR(SASHA) BICHUK</div>
-      <span class="header-item header-about" tabindex="0">ABOUT</span>
-      <span class="header-item header-mail" tabindex="0" aria-label="Mail">MAIL</span>
-      <a class="header-item header-instagram" href="https://www.instagram.com/sasha.bichuk/" target="_blank" rel="noopener noreferrer">INSTAGRAM</a>
-    </header>
-    <section id="archive" class="archive" aria-label="Projects. Select a row to reveal related values, click to open a project, or sort by a column heading." tabindex="0"></section>
+   <div class="hover-backdrop" aria-hidden="true"><img id="preview-image" alt=""></div>
+   <header class="top-header" aria-label="Portfolio navigation">
+    <div class="header-brand">OLEKSANDR(SASHA) BICHUK</div>
+    <nav class="header-nav" aria-label="Main navigation">
+     <span class="header-item header-about" tabindex="0">ABOUT</span>
+     <span class="header-item header-mail" tabindex="0">MAIL</span>
+     <a class="header-item header-instagram" href="https://www.instagram.com/sasha.bichuk/" target="_blank" rel="noopener noreferrer">INSTAGRAM</a>
+    </nav>
+   </header>
+   <section id="archive" class="archive" aria-label="Projects. Hover to highlight linked cells, sort by a column heading, click to open a project." tabindex="0"></section>
   </main>
+ </div>
 </div>
-<script src="projects-data.js?v=9"></script>
-<script src="home.js?v=9"></script>
+<script src="projects-data.js?v=8.3"></script>
+<script src="home.js?v=8.3"></script>
 </body>
 </html>
