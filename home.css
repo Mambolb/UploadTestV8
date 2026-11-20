@@ -1,10 +1,14 @@
-/* Portfolio V8 — Figma ProtV8(1), HomePage_DefaultV3 (1440 x 1024).
-   Geometry: white 32px top bar, columns 524/261/262/262/131, 28px rows.
-   TYPE: Geist Mono 16/21 semibold header; 12/16 regular table.
-   HoverDarkV2: linked white blocks, blurred color work preview.
-   White/red state: red type while hovering the project's name cell.
-   Mail + Instagram have identical red-on-white hover, no strokes. */
-:root{
+/* Portfolio V9 — interpreted from CodeExport_ProtV9.rtf.
+   Figma reference frame: 1440 × 1024.
+   Header 32 px; columns 524 / 261 / 262 / 262 / 131 px; row 28 px.
+   Default = black; project hover = blurred COLOUR preview + white linked cells
+   with red (#FF0000) typography. No strokes, separator lines or gradients.
+   Frame-specific previews:
+     HoverLightV4  SHA HED: x -28, y 0, 1561 × 1041, blur 11.75 px.
+     HoverDarkV4   DIGITAL GARDEN: x -502, y 36, 2315 × 1302, blur 11.25 px.
+   Coordinates below are in the unscaled Figma 1440 px canvas.
+*/
+:root {
   --row-height:28px;
   --header-height:28px;
   --col-name:524px;
@@ -12,56 +16,86 @@
   --col-medium:262px;
   --col-context:262px;
   --col-year:131px;
-  --hover-blur:11.75px;
+  --red:#FF0000;
 }
-*{box-sizing:border-box}
-html,body{margin:0;padding:0;background:#000;color:#fff}
-body{overflow-x:hidden}
-.home-viewport{position:relative;width:1440px;height:1024px}
-.home-canvas{position:absolute;left:0;top:0;width:1440px;min-height:1024px;overflow:hidden;
-  isolation:isolate;transform-origin:top left;background:#000;color:#fff;
-  font:400 12px/16px 'Geist Mono','Courier New',monospace;text-transform:uppercase}
-.hover-backdrop{position:absolute;inset:32px 0 0;display:none;overflow:hidden;z-index:0;
-  pointer-events:none;background:#000}
-.hover-backdrop img{position:absolute;left:-28px;top:-32px;width:1561px;height:1041px;
-  max-width:none;display:block;object-fit:cover;filter:blur(var(--hover-blur));transform:translateZ(0)}
-.home-canvas.has-hover .hover-backdrop{display:block}
-.top-header{position:absolute;top:0;left:0;width:1440px;height:32px;z-index:3;
-  background:#fff;color:#000;font:600 16px/21px 'Geist Mono','Courier New',monospace}
-.header-brand,.header-item{position:absolute;top:0;height:32px;padding:4px 8px;
-  display:flex;align-items:center;margin:0;border:0;border-radius:0;background:transparent;
-  color:#000;text-decoration:none;white-space:nowrap;font:inherit}
-.header-brand{left:0;width:524px}
-.header-about{left:524px;width:132px}
-.header-mail{left:785px;width:129px;cursor:default}
-.header-instagram{left:1047px;width:132px;cursor:pointer}
-/* Mail and Instagram are identical in Figma: red text, white background, no line. */
-.header-mail:hover,.header-mail:focus-visible,
-.header-instagram:hover,.header-instagram:focus-visible{color:#ff0000;background:#fff;outline:none}
-.archive{position:absolute;top:32px;left:0;z-index:2;display:flex;align-items:flex-start;
-  width:1440px;min-height:992px;outline:0}
-.column{position:relative;flex:none;min-height:992px}
-.column[data-field=name]{width:var(--col-name)}
-.column[data-field=category]{width:var(--col-category)}
-.column[data-field=medium]{width:var(--col-medium)}
-.column[data-field=context]{width:var(--col-context)}
-.column[data-field=year]{width:var(--col-year)}
-.cell{position:absolute;left:0;width:100%;margin:0;border:0;border-radius:0;padding:4px 8px;
-  display:flex;align-items:flex-start;justify-content:flex-start;font:inherit;line-height:16px;
-  color:#fff;text-transform:uppercase;text-align:left;text-decoration:none;
-  background:transparent;white-space:normal}
-.cell.is-header{height:28px;top:0;cursor:pointer}
-.column[data-field=name] .is-header{color:#ff0000}
-.cell.row-name{cursor:pointer}
-.cell.selected{background:#fff;color:#000}
-.home-canvas.is-name-hover .cell.selected{color:#ff0000}
-.cell:focus-visible,.archive:focus-visible{outline:none}
-.cell.is-header:focus-visible{background:#fff;color:#ff0000}
-/* Selected composition (white with red type) uses unblurred full-color preview,
-   while ordinary related-cell hover retains the 11.75px blur. */
-.home-canvas.is-name-hover .hover-backdrop img{filter:none}
-/* Keep Figma's background alignment independent of individual work aspect ratios. */
-.home-canvas[data-preview="enzyklopaedie"] .hover-backdrop img{
-  left:50%;top:50%;transform:translate(-50%,-50%) translateZ(0);object-position:center center
+* { box-sizing:border-box; }
+html, body { margin:0; padding:0; background:#000; color:#fff; }
+body { width:100%; overflow-x:hidden; }
+.home-viewport { position:relative; width:1440px; height:1024px; }
+.home-canvas {
+  position:absolute; inset:0 auto auto 0; width:1440px; min-height:1024px;
+  overflow:hidden; isolation:isolate; transform-origin:top left;
+  background:#000; color:#fff;
+  font:400 12px/16px 'Geist Mono','Courier New',monospace;
+  text-transform:uppercase;
 }
-.sort-arrow{display:inline-block;margin-left:7px;flex:none;font:inherit}
+/* Preview remains blurred in BOTH new hover frames, even over the name cell. */
+.hover-backdrop {
+  display:none; position:absolute; inset:32px 0 0; z-index:0;
+  overflow:hidden; background:#000; pointer-events:none;
+}
+.home-canvas.has-hover .hover-backdrop { display:block; }
+.hover-backdrop img {
+  display:block; position:absolute; max-width:none;
+  left:-28px; top:-32px; width:1561px; height:1041px;
+  object-fit:cover; filter:blur(11.75px);
+  transform:translateZ(0);
+}
+/* Exact position / blur from Figma's HoverDarkV4 frame. */
+.home-canvas[data-preview="digital-garden"] .hover-backdrop img {
+  left:-502px; top:4px; width:2315px; height:1302px;
+  filter:blur(11.25px);
+}
+/* Exact position / blur from Figma's HoverLightV4 frame. */
+.home-canvas[data-preview="shahed"] .hover-backdrop img {
+  left:-28px; top:-32px; width:1561px; height:1041px;
+  filter:blur(11.75px);
+}
+.top-header {
+  position:absolute; top:0; left:0; z-index:3;
+  width:1440px; height:32px; background:#fff; color:#000;
+  font:600 16px/21px 'Geist Mono','Courier New',monospace;
+}
+.header-brand,.header-item {
+  position:absolute; top:0; display:flex; align-items:center;
+  height:32px; margin:0; border:0; border-radius:0; padding:4px 8px;
+  color:#000; background:transparent; text-decoration:none;
+  text-transform:uppercase; white-space:nowrap; font:inherit;
+}
+.header-brand { left:0; width:524px; }
+.header-about { left:524px; width:132px; }
+.header-mail { left:785px; width:129px; }
+.header-instagram { left:1047px; width:132px; cursor:pointer; }
+/* ProtV9 exports ABOUT and MAIL states; Instagram uses the same visual rule. */
+.header-about:hover, .header-about:focus-visible,
+.header-mail:hover, .header-mail:focus-visible,
+.header-instagram:hover, .header-instagram:focus-visible {
+  background:#fff; color:var(--red); outline:none;
+}
+.archive {
+  position:absolute; left:0; top:32px; z-index:2;
+  display:flex; align-items:flex-start; width:1440px;
+  min-height:992px; outline:0;
+}
+.column { position:relative; flex:none; min-height:992px; }
+.column[data-field="name"] { width:var(--col-name); }
+.column[data-field="category"] { width:var(--col-category); }
+.column[data-field="medium"] { width:var(--col-medium); }
+.column[data-field="context"] { width:var(--col-context); }
+.column[data-field="year"] { width:var(--col-year); }
+.cell {
+  position:absolute; left:0; width:100%; margin:0; border:0; border-radius:0;
+  padding:4px 8px; display:flex; align-items:flex-start; justify-content:flex-start;
+  background:transparent; color:#fff; text-decoration:none;
+  text-align:left; font:inherit; line-height:16px; text-transform:uppercase;
+  overflow:visible; white-space:normal;
+}
+.cell.is-header { top:0; height:28px; cursor:pointer; }
+.column[data-field="name"] .cell.is-header { color:var(--red); }
+.cell.row-name { cursor:pointer; }
+/* A single hovered row highlights its linked cells; merged values keep their
+   Figma-length filled rectangles. V9 consistently uses red, not black text. */
+.cell.selected, .cell.selected:hover { background:#fff; color:var(--red); }
+.cell:focus-visible,.archive:focus-visible { outline:none; }
+.sort-arrow { display:inline-block; margin-left:7px; flex:none; font:inherit; }
+/* No borders, text shadows, unblur on name hover, or automatic hover transitions. */
